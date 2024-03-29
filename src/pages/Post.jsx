@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import './homepage.css'
 
 const Post = () => {
   const [post, setPost] = useState([]);
@@ -15,11 +16,9 @@ const Post = () => {
   // deleting a post
   return (
     <div>
-      <div>
+      <div className="posts">
         <p>{post.title}</p>
         <p>{post.body}</p>
-      </div>
-      <div>
       </div>
     </div>
   );

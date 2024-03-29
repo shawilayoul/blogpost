@@ -39,7 +39,9 @@ const HomePage = () => {
                 <h3>{title}</h3>
                 <p>{body}</p>
               </div>
-              <button onClick={() => deletePost(id)}>Delete</button>
+              <button onClick={() => deletePost(id)}
+              className="delete-btn"
+              >Delete</button>
               <button
                 onClick={() => {
                   navigate(`/post/edit/${id}`);
