@@ -26,7 +26,11 @@ const Post = () => {
         >
           Edit
         </button>
-        <button>Delete</button>
+        <button
+         onClick={() => {
+          navigate(`/post/delete/${id}`);
+        }}
+        >Delete</button>
       </div>
     </div>
   );
