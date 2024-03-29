@@ -1,9 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import AppLayOut from "./AppLayOut";
+import AppLayOut from "../components/AppLayOut";
 import HomePage from "../pages/HomePage";
 import Post from "../pages/Post";
 import EditPost from "../pages/EditPost";
-import DeletePost from "../pages/DeletePost";
 
 export const router = createBrowserRouter([
   {
@@ -22,10 +21,7 @@ export const router = createBrowserRouter([
         path: "/post/edit/:id",
         element: <EditPost />,
       },
-      {
-        path: "/post/delete/:id",
-        element: <DeletePost />,
-      },
+     
     ],
   },
 ]);

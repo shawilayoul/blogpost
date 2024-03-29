@@ -24,7 +24,7 @@ const HomePage = () => {
     }
   };
   return (
-    <div>
+    <div className="home-container">
       <ul>
         {posts.map(({ id, title, body }) => {
           return (
@@ -35,22 +35,23 @@ const HomePage = () => {
                 }}
                 className="posts"
               >
+                <p>{`post number ${id}`}</p>
                 <h3>{title}</h3>
                 <p>{body}</p>
               </div>
               <button onClick={() => deletePost(id)}>Delete</button>
               <button
-          onClick={() => {
-            navigate(`/post/edit/${id}`);
-          }}
-        >
-          Edit
-        </button>
+                onClick={() => {
+                  navigate(`/post/edit/${id}`);
+                }}
+                className="edit-btn"
+              >
+                Edit
+              </button>
             </div>
           );
         })}
       </ul>
-      <Post posts={posts} setPosts={setPosts} />
     </div>
   );
 };

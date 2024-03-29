@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -11,15 +12,15 @@ const EditPost = () => {
   let { id } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then((resp) => resp.json().then((data) => setPost(data)))
-      .catch((err) => console.log(err));
-  }, [id]);
-  const handelSubmit = () => {
-    console.log(editPost.title);
-    console.log(editPost.body);
-    navigate(`/`)
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put("https://jsonplaceholder.typicode.com/posts",editPost);
+      console.log("post has been updated")
+    } catch (error) {
+      console.log(" error editting post",error);
+    }
+    navigate(`/`);
   };
   const handelChange = (e) => {
     const { value, name } = e.target;
@@ -53,7 +54,7 @@ const EditPost = () => {
           ></textarea>
         </div>
         <button type="submit" onClick={handelSubmit}>
-          Edit
+          Edit Post
         </button>
       </form>
     </div>
