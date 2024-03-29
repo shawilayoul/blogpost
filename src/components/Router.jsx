@@ -1,28 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
 import AppLayOut from "./AppLayOut";
 import HomePage from "../pages/HomePage";
-import BlogePost from "../pages/BlogePost";
-import EditBlogPost from "../pages/EditBlogPost";
+import Post from "../pages/Post";
+import EditPost from "../pages/EditPost";
+import DeletePost from "../pages/DeletePost";
 
 export const router = createBrowserRouter([
-    {
-        path:'/',
-        element:<AppLayOut/>,
-        children:[
-            {
-                index:true,
-                element: <HomePage/>
-            },
-            {
-                path:'/post',
-                element:<BlogePost/>
-            },
-            {
-                path:'/post/edit/:id',
-                element:<EditBlogPost/>
-            }
-        ]
-    }
-]
-
-)
+  {
+    path: "/",
+    element: <AppLayOut />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "/post/:id",
+        element: <Post />,
+      },
+      {
+        path: "/post/edit/:id",
+        element: <EditPost />,
+      },
+      {
+        path: "/post/delete/:id",
+        element: <DeletePost />,
+      },
+    ],
+  },
+]);
