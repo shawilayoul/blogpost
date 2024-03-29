@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./homepage.css";
-import Post from "./Post";
 import { useNavigate } from "react-router-dom";
+import Post from "./Post";
+import axios from "axios";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
@@ -11,27 +12,45 @@ const HomePage = () => {
       .then((resp) => resp.json().then((data) => setPosts(data)))
       .catch((err) => console.log(err));
   }, []);
+
+  const deletePost = async (id) => {
+    try {
+      await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+      console.log("post deleted", id);
+      navigate("/");
+      setPosts(posts.filter((post) => post.id !== id));
+    } catch (error) {
+      console.log("error deleting post", error);
+    }
+  };
   return (
     <div>
       <ul>
         {posts.map(({ id, title, body }) => {
           return (
-            <div
-              key={id}
-              onClick={() => {
-                navigate(`/post/${id}`);
-              }}
-            >
-              <div>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </div>
+            <div key={id}>
+              <div
+                onClick={() => {
+                  navigate(`/post/${id}`);
+                }}
+                className="posts"
+              >
+                <h3>{title}</h3>
+                <p>{body}</p>
               </div>
+              <button onClick={() => deletePost(id)}>Delete</button>
+              <button
+          onClick={() => {
+            navigate(`/post/edit/${id}`);
+          }}
+        >
+          Edit
+        </button>
             </div>
           );
         })}
       </ul>
+      <Post posts={posts} setPosts={setPosts} />
     </div>
   );
 };

@@ -10,8 +10,9 @@ const Post = () => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((resp) => resp.json().then((data) => setPost(data)))
       .catch((err) => console.log(err));
-  }, []);
-  console.log(id);
+  }, [id]);
+
+  // deleting a post
   return (
     <div>
       <div>
@@ -19,18 +20,6 @@ const Post = () => {
         <p>{post.body}</p>
       </div>
       <div>
-        <button
-          onClick={() => {
-            navigate(`/post/edit/${id}`);
-          }}
-        >
-          Edit
-        </button>
-        <button
-         onClick={() => {
-          navigate(`/post/delete/${id}`);
-        }}
-        >Delete</button>
       </div>
     </div>
   );

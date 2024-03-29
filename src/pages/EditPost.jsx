@@ -12,14 +12,14 @@ const EditPost = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`,{title:editPost.title, body: editPost.body})
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((resp) => resp.json().then((data) => setPost(data)))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
   const handelSubmit = () => {
     console.log(editPost.title);
     console.log(editPost.body);
-    navigate(`/post/${id}`)
+    navigate(`/`)
   };
   const handelChange = (e) => {
     const { value, name } = e.target;
