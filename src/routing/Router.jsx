@@ -7,12 +7,12 @@ import EditPost from "../pages/EditPost";
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/post/",
     element: <AppLayOut />,
     children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
       {
         path: "/post/:id",
         element: <Post />,
@@ -21,7 +21,6 @@ export const router = createBrowserRouter([
         path: "/post/edit/:id",
         element: <EditPost />,
       },
-     
     ],
   },
 ]);

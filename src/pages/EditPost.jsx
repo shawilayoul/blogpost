@@ -1,26 +1,29 @@
 import axios from "axios";
-import React, {  useState } from "react";
-import { useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditPost = () => {
-  //const [post, setPost] = useState("");
+  const [handelError, setHandelError] = useState("");
   const [editPost, setEditPost] = useState({
     title: "",
     body: "",
   });
 
-  //let { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-
-  const handelSubmit = async (e) => {
-    e.preventDefault();
+  const handelSubmit = async () => {
     try {
-      await axios.put("https://jsonplaceholder.typicode.com/posts",editPost);
-      console.log("post has been updated")
-    } catch (error) {
-      console.log(" error editting post",error);
+      await axios.put(
+        `https://jsonplaceholder.typicode.com/posts/${id}`,
+        JSON.stringify(editPost)
+      );
+      console.log(editPost)
+      navigate('/');
+      
+    } catch (err) {
+      console.log(err.message);
+      setHandelError(err.message);
     }
-    navigate(`/`);
   };
   const handelChange = (e) => {
     const { value, name } = e.target;
@@ -29,9 +32,13 @@ const EditPost = () => {
       [name]: value,
     });
   };
+
+  const isUpdated = editPost.title.length === 0 && editPost.body.length === 0;
+
   return (
     <div>
-      <form action="#">
+      {handelError && <h3>{handelError}</h3>}
+      <form onSubmit={handelSubmit}>
         <h3>Edit the post</h3>
         <div>
           <label htmlFor="title">Title</label>
@@ -53,8 +60,8 @@ const EditPost = () => {
             rows="10"
           ></textarea>
         </div>
-        <button type="submit" onClick={handelSubmit}>
-          Edit Post
+        <button type="submit" disabled={isUpdated}>
+          Update Blog Post
         </button>
       </form>
     </div>
