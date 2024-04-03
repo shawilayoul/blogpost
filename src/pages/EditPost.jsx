@@ -1,15 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {  useState } from "react";
+import { useNavigate} from "react-router-dom";
 
 const EditPost = () => {
-  const [post, setPost] = useState("");
+  //const [post, setPost] = useState("");
   const [editPost, setEditPost] = useState({
     title: "",
     body: "",
   });
 
-  let { id } = useParams();
+  //let { id } = useParams();
   const navigate = useNavigate();
 
   const handelSubmit = async (e) => {

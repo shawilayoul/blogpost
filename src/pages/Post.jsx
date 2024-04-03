@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import './homepage.css'
 
 const Post = () => {
   const [post, setPost] = useState([]);
   let { id } = useParams();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((resp) => resp.json().then((data) => setPost(data)))

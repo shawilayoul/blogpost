@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./homepage.css";
 import { useNavigate } from "react-router-dom";
-import Post from "./Post";
+//import Post from "./Post";
 import axios from "axios";
 
 const HomePage = () => {
